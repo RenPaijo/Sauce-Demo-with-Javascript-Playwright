@@ -6,8 +6,9 @@ export class PageLogin{
         this.usnInput = page.locator('input[name="user-name"]');
         this.passInput = page.locator('input[name="password"]');
         this.loginBtn = page.locator('input[type="submit"]');
-        this.error1 = page.getByText('Epic sadface: Username is required');
-        this.error2 = page.getByText('Epic sadface: Username and password do not match any user in this service');
+        this.blank1 = page.getByText('Epic sadface: Username is required');
+        this.error = page.getByText('Epic sadface: Username and password do not match any user in this service');
+        this.blank2 = page.getByText('Epic sadface: Password is required');
         this.dashboard = page.locator('.inventory_container');
         this.hmbger = page.locator('button[type="button"]').first();
         this.logoutBtn = page.getByText('Logout');

@@ -17,12 +17,20 @@ test.describe('Test login logout pada Sauce Demo', () => {
 
     test('Invalid login wrong input', async ({page}) => {
         await pageLogin.Login('standard_users', 'secret_saucea');
-        await expect.soft(pageLogin.error2).toBeVisible();
+        await expect.soft(pageLogin.error).toBeVisible();
     })
 
-    test('Invalid login blank input', async ({page}) => {
-        await pageLogin.Login('', '');
-        await expect.soft(pageLogin.error1).toBeVisible();
+    test.describe('Blank input login test', () => {
+
+        test('Username blank', async ({page}) => {
+            await pageLogin.Login('', 'secret_sauce');
+            await expect.soft(pageLogin.blank1).toBeVisible();
+        })
+
+        test('Password blank', async ({page}) => {
+            await pageLogin.Login('standard_user', '');
+            await expect.soft(pageLogin.blank2).toBeVisible();
+        })
     })
 
     test('Log out', async ({page}) => {

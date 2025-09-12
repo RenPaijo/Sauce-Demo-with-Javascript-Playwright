@@ -6,12 +6,15 @@
   "scripts": {
     "test": "npx playwright test",
     "test:login": "npx playwright test --project=chromium-login --headed",
-    "test:features": "npx playwright test --project=chromium --headed"
+    "test:features": "npx playwright test --project=chromium --headed",
+    "test:login:headless": "npx playwright test --project=chromium-login",
+    "test:features:headless": "npx playwright test --project=chromium"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^10.0.0",
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.3.1"
   }
