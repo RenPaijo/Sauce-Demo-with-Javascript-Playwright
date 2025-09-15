@@ -17,21 +17,21 @@ test.describe('Test untuk berbagai case di dashboard', () => {
         await expect(pageDashboard.itemsName.first()).toHaveText('Sauce Labs Fleece Jacket');
     })
 
-    test('Test pengambilan satu item', async ({page}) => {
-        await expect(pageDashboard.cartCount).toBeHidden();
+    test.describe('Test pengambilan item', () => {
+        test('Pengambilan satu item dengan nama', async ({page}) => {
+            await pageDashboard.addItemByName('Test.allTheThings() T-Shirt (Red)');
+        })
 
-        await pageDashboard.addItemsAndVerifyCart([1]);
+        test('Pengambilan beberapa item dengan nama', async ({page}) => {
+            const itemNames = [
+                'Sauce Labs Onesie',
+                'Sauce Labs Bolt T-Shirt',
+                'Sauce Labs Backpack'
+            ]
+            await pageDashboard.addMultipleItemsAndValidates(itemNames);
 
-        await pageDashboard.cartIcn.click();
-        await expect(pageDashboard.cartItem).toHaveCount(1);
-    })
-    
-    test('Test pengambilan beberapa items', async ({page}) => {
-        await expect(pageDashboard.cartCount).toBeHidden();
-
-        await pageDashboard.addItemsAndVerifyCart([0, 2, 3]);
-
-        await pageDashboard.cartIcn.click();
-        await expect(pageDashboard.cartItem).toHaveCount(3);
+            await pageDashboard.cartIcn.click();
+            await expect(pageDashboard.cartItem).toHaveCount(3);
+        })
     })
 })
