@@ -7,7 +7,7 @@ test.describe('Test untuk berbagai case di dashboard', () => {
     test.beforeEach('Navigasi ke dashboard', async ({page}) => {
         pageDashboard = new PageDashboard(page);
 
-        await page.goto('https://www.saucedemo.com/inventory.html');
+        await page.goto('/inventory.html');
         await expect(pageDashboard.cartIcn).toBeVisible();
     })
 

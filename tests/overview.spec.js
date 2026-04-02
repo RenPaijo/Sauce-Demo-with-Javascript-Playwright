@@ -2,6 +2,7 @@ const { test, expect } = require ('@playwright/test');
 import { PageDashboard } from '../pages/PageDashboard';
 import { PageCheckout } from '../pages/PageCheckout';
 import { PageOverview } from '../pages/PageOverview';
+import{ fakerID_ID as faker } from '@faker-js/faker';
 
 test.describe('Checkout overview test', () => {
     let pageCheckout, pageDashboard, pageOverview;
@@ -11,18 +12,22 @@ test.describe('Checkout overview test', () => {
         pageDashboard = new PageDashboard(page);
         pageOverview = new PageOverview(page);
 
-        await page.goto('https://www.saucedemo.com/inventory.html');
+        const firstName = faker.person.firstName();
+        const lastName = faker.person.lastName();
+        const zipCode = faker.location.zipCode('#####')
+
+        await page.goto('/inventory.html');
         await pageDashboard.addMultipleItemsAndValidates([
             'Sauce Labs Onesie',
             'Sauce Labs Bolt T-Shirt',
             'Sauce Labs Backpack'
         ]);
 
-        await page.goto('https://www.saucedemo.com/checkout-step-one.html');
-        await pageCheckout.inputForm('The', 'Mboh', '82264');
+        await page.goto('/checkout-step-one.html');
+        await pageCheckout.inputForm(firstName, lastName, zipCode);
         await pageCheckout.clickContinueBtn();
 
-        await page.goto('https://www.saucedemo.com/checkout-step-two.html');
+        await page.goto('/checkout-step-two.html');
         await expect(pageOverview.pageOverview).toBeVisible();
     })
 

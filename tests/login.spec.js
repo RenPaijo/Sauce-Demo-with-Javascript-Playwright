@@ -7,11 +7,11 @@ test.describe('Test login logout pada Sauce Demo', () => {
     test.beforeEach('Navigasi ke link Sauce Demo', async ({page}) => {
         pageLogin = new PageLogin(page);
 
-        await page.goto('https://www.saucedemo.com/')
+        await page.goto('/')
     })
 
     test('Valid login', async ({page}) => {
-        await pageLogin.Login('standard_user', 'secret_sauce');
+        await pageLogin.Login(process.env.USER, process.env.PASSWORD);
         await expect.soft(pageLogin.dashboard).toBeVisible();
     })
 
@@ -34,7 +34,7 @@ test.describe('Test login logout pada Sauce Demo', () => {
     })
 
     test('Log out', async ({page}) => {
-        await pageLogin.Login('standard_user', 'secret_sauce');
+        await pageLogin.Login(process.env.USER, process.env.PASSWORD);
         await pageLogin.logout();
         await expect(pageLogin.loginBtn).toBeVisible();
     })

@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-import{ faker } from '@faker-js/faker';
+import{ fakerID_ID as faker } from '@faker-js/faker';
 import { PageCheckout } from '../pages/PageCheckout.js';
 import { PageDashboard } from '../pages/PageDashboard.js';
 
@@ -10,10 +10,10 @@ test.describe('Checkout: Your Information testing', () => {
         pageCheckout = new PageCheckout(page);
         pageDashboard = new PageDashboard(page);
 
-        await page.goto('https://www.saucedemo.com/inventory.html');
-        await pageDashboard.cartBtn.first().click();
+        await page.goto('/inventory.html');
+        await pageDashboard.addItemByName('Sauce Labs Backpack')
 
-        await page.goto('https://www.saucedemo.com/checkout-step-one.html');
+        await page.goto('/checkout-step-one.html');
         await expect(pageCheckout.information).toBeVisible();
     })
 

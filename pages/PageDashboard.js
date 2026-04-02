@@ -11,6 +11,7 @@ export class PageDashboard{
         this.cartCount = page.locator('.shopping_cart_badge');
         this.itemsName = page.locator('.inventory_item_name');
         this.cartItem = page.locator('.cart_item');
+        this.cartBtn = page.locator('.btn btn_primary btn_small btn_inventory ')
     }
 
     async addItemByName(name){
